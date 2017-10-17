@@ -1,4 +1,5 @@
-import simplejson as json
+#import simplejson as json
+import json
 from TwitterAPI import TwitterAPI
 
 #conexao com o Twitter

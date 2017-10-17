@@ -3,4 +3,4 @@
 ## Definition
 
 **Stance detection**:
-_"Stance detection is the task of automatically identifying whether the author of a text is favorable, contrary or unfavorable or contrary to a given proposition or target."_ (Mohammad et al., 2016b)
+_"Stance  detection  is  the  task  of  automatically  determining from  text  whether  the  author  of  the  text  is  in  favor  of, against, or neutral towards a proposition or target."_ (Mohammad et al., 2016b)
