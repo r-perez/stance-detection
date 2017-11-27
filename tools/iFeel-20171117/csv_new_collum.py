@@ -1,8 +1,6 @@
 # script que converte le dois csvs, e escreve em um terceiro csv a primeira coluna do primeiro csv,
 # e a representacao numerica da maior ocorrencia de elementos das colunas restantes do segundo csv, com desempate
 import csv
-from itertools import izip
-from itertools import groupby as g
 
 # encontra o mais comum
 def most_common(lst):
@@ -30,12 +28,15 @@ def sa_numerical(value):
 # abre dois arquivos de leitura csv, conta a ocorrencia do mais comum da lista e salva em um novo arquivo
 def read_two_csvs_write_new_csv_with_collum(src_in0, src_in1, src_out):
     # abre os arquivos de entrada e saida
-    with open(src_in0, 'rb') as csvfile_in0, open(src_in1, 'rb') as csvfile_in1, open(src_out, 'wb') as csvfile_out:
+    with \
+            open(src_in0, 'r', encoding='utf8') as csvfile_in0, \
+            open(src_in1, 'r', encoding='utf8') as csvfile_in1, \
+            open(src_out, 'w', encoding='utf8') as csvfile_out:
         fin0 = csv.reader(csvfile_in0)
         fin1 = csv.reader(csvfile_in1)
         fout = csv.writer(csvfile_out)
         # itera simultaneamente em dois arquivos de entrada
-        for row0, row1, in izip(fin0, fin1):
+        for row0, row1, in zip(fin0, fin1):
             # escreve na saida uma linha com o primeiro elemento da linha da entrada do segundo arquivo,
             # e com a representacao numerica da contagem da maior ocorrencia das outras colunas
             # da linha do primeiro arquivo, exceto da primeira coluna, com desempate
@@ -51,7 +52,7 @@ def main():
         src_in0 = 'iFeel-{0}{1}.xlsx{2}'.format(filename, i, extension)
         src_in1 = '{0}{1}{2}'.format(filename, i, extension)
         src_out = 'AnSen-{0}{1}{2}'.format(filename, i, extension)
-        print 'Open \'{0}\', \'{1}\' and generate new \'{2}\' file'.format(src_in0, src_in1, src_out)
+        print('Open \'{0}\', \'{1}\' and generate new \'{2}\' file'.format(src_in0, src_in1, src_out))
         read_two_csvs_write_new_csv_with_collum(src_in0, src_in1, src_out)
     # src_in0 = 'input0.csv'
     # src_in1 = 'input1.csv'

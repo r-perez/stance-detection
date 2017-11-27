@@ -12,9 +12,9 @@ def read_xlsx_write_csv(src, encode_format):
             c.writerow([cell.value.encode(encode_format) for cell in r])
 
 def main():
-    for i in xrange(0, 7):
+    for i in range(0, 7):
         for j in ['contra', 'favor']:
             #read_xlsx_write_csv('iFeel-truncatedTo144-{0}-lula_df_texto_{1}.xlsx'.format(i, j), 'utf-8')
-            print 'Teste'
+            print ('Teste')
 
 if __name__ == '__main__': main()

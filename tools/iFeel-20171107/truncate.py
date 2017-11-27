@@ -13,7 +13,7 @@ def read_truncate_write(src, max_chars, max_lines):
     with open(src) as fin:
         for index, line in enumerate(fin):
             line_trunc = ('{0}\'\n'.format(line[:max_chars-1])) if len(line) > max_chars else line
-            print '{0}\t{1}'.format(index, line_trunc)
+            print('{0}\t{1}'.format(index, line_trunc))
             #print line_trunc
             if (index > 0) and (index % max_lines == 0):
                 file_num += 1
@@ -24,7 +24,7 @@ def read_truncate_write(src, max_chars, max_lines):
     fin.close()
 
 def main():
-    print 'Teste'
+    print('Teste')
     #read_truncate_write('filename.txt', 3, 3)
     #read_truncate_write('lula_df_texto_contra.csv', 144, 1000)
     #read_truncate_write('lula_df_texto_favor.csv', 144, 1000)

@@ -1,7 +1,6 @@
 # junta todos os arquivos necessarios
 # os 3 arquivos csvs de entrada, e faz a juncao em 1 de saida
 import csv
-from itertools import izip
 
 # encontra o mais comum
 def most_common(lst):
@@ -46,16 +45,16 @@ def get_numerical_sentiment_analysys(row_ifeel):
 def read_csvs_join_tweet_liwc_sa(src_ifeel, src_tweet, src_liwc, src_join):
     # abre os arquivos de entrada e saida
     with \
-            open(src_ifeel, 'rb') as csvfile_in0, \
-            open(src_tweet, 'rb') as csvfile_in1, \
-            open(src_liwc, 'rb') as csvfile_in2, \
-            open(src_join, 'wb') as csvfile_out:
+            open(src_ifeel, 'r', encoding='utf8') as csvfile_in0, \
+            open(src_tweet, 'r', encoding='utf8') as csvfile_in1, \
+            open(src_liwc, 'r', encoding='utf8') as csvfile_in2, \
+            open(src_join, 'w', encoding='utf8') as csvfile_out:
         fin0 = csv.reader(csvfile_in0)
         fin1 = csv.reader(csvfile_in1)
         fin2 = csv.reader(csvfile_in2)
-        fout = csv.writer(csvfile_out)
+        fout = csv.writer(csvfile_out, lineterminator='\n')
         # itera simultaneamente em 3 arquivos de entrada
-        for row_ifeel, row_tweet, row_liwc, in izip(fin0, fin1, fin2):
+        for row_ifeel, row_tweet, row_liwc, in zip(fin0, fin1, fin2):
             # escreve na saida:
             # todas as linhas do arquivo de tweet
             # todas as linhas do arquivo do liwc
@@ -79,8 +78,8 @@ def main():
         src_tweet = '{0}{1} (1){2}'.format(filename_tweets, i, extension)
         src_liwc = 'LIWC2015 Results ({0}{1}) (1){2}'.format(filename_texto, i, extension)
         src_join = 'join-{0}{1}{2}'.format(filename_texto, i, extension)
-        print 'Open \'{0}\', \'{1}\', \'{2}\' and generate new \'{3}\' file'.format(
-            src_ifeel, src_tweet, src_liwc, src_join)
+        print('Open \'{0}\', \'{1}\', \'{2}\' and generate new \'{3}\' file'.format(
+            src_ifeel, src_tweet, src_liwc, src_join))
         read_csvs_join_tweet_liwc_sa(src_ifeel, src_tweet, src_liwc, src_join)
 
     # src_ifeel = 'input0.csv'
